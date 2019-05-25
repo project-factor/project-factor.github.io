@@ -1,0 +1,60 @@
+body {
+    background-color: #3C3C3C;
+}
+
+h1 {
+    text-align: center;
+    margin: auto;
+    color: #DADFF7;
+}
+
+#search {
+    text-align: center;
+    margin: auto;
+    
+}
+
+#query {
+    margin: auto;
+    width: 80%;
+    height: 40px;
+    font-size: 25px;
+    
+    margin-top: 20px;
+    font-family: 'Slabo 27px', serif;
+}
+
+#btnSubmit {
+    outline: 0;
+    margin: auto;
+    display: block;
+    margin-top: 25px;
+    width: 130px;
+    height: 40px;
+    
+    font-size: 30px;
+    border: none;
+    text-decoration: none;
+    color: white;
+    
+    background-color: #DF2935;
+    
+    box-shadow: 0 6px #B7222C;
+    
+}
+
+#btnSubmit:hover {
+    box-shadow: 0 4px #B7222C;
+    transform: translateY(2px);
+    transition: box-shadow .2s linear;
+    transition: transition .2s linear;
+
+}
+
+#btnSubmit:active {
+    box-shadow: 0 0px #B7222C;
+    transform: translateY(4px);
+    transition: box-shadow .2s linear;
+    transition: transition .2s linear;
+    
+}
