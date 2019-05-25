@@ -1,0 +1,12 @@
+Flip your frown:
+    Facial Recognition: https://github.com/ageitgey/face_recognition
+    Image Manipulation: https://docs.python-guide.org/scenarios/imaging/
+        - Windows Install: https://github.com/ageitgey/face_recognition/issues/175#issue-257710508
+
+Github Facebook:
+    Github Developer API: https://developer.github.com/v3/
+
+Factor (fact checker):
+    Wikipedia: https://www.mediawiki.org/wiki/API:Main_page
+    New York Times: https://developer.nytimes.com/
+    List of APIs: https://en.wikipedia.org/wiki/List_of_news_media_APIs
