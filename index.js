@@ -23,12 +23,18 @@ function strip(html){
 }
 
 function wikipedia(query) {
-    const apiurl="https://en.wikipedia.org/w/api.php?action=query&list=search&utf8=&format=json&origin=*&srsearch="
+    const lookupurl = "https://en.wikipedia.org/wiki/"
+    const apiurl = "https://en.wikipedia.org/w/api.php?action=query&list=search&utf8=&format=json&origin=*&srsearch="
     const fullurl = apiurl + escape(query)
     return fetch(fullurl)
         .then(response => response.json())
         .then((j) => {
             const pages = j.query.search
-            return pages.map((page, index) => article(page.title, "Wikipedia", strip(page.snippet), index))
+            return pages.map((page, index) => article(page.title, 
+                                                      "Wikipedia", 
+                                                      strip(page.snippet), 
+                                                      index,
+                                                      lookupurl + escape(page.title),
+                                                      ))
         })
 }
