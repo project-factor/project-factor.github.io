@@ -1,5 +1,6 @@
 "use strict";
 
-function lookup() {
-    console.log("meme")
+function startquery() {
+    var query = document.getElementById("query").value
+    console.log(query)
 }

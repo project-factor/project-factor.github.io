@@ -10,3 +10,9 @@ Factor (fact checker):
     Wikipedia: https://www.mediawiki.org/wiki/API:Main_page
     New York Times: https://developer.nytimes.com/
     List of APIs: https://en.wikipedia.org/wiki/List_of_news_media_APIs
+
+List of sources:
+    AP
+    Wikipedia
+    BBC
+    NPR
