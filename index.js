@@ -2,8 +2,12 @@
 
 function startquery() {
     const query = document.getElementById("query").value
-    wikipedia(query).then((j) => console.log(j))
-    newsapi(query).then((j) => console.log(j))
+    wikipedia(query).then((j) => {
+        console.log(j)
+    })
+    newsapi(query).then((j) => {
+        console.log(j)
+    })
 }
 
 function article(nm, src, blrb, rnk, url) {
