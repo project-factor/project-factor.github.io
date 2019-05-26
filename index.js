@@ -9,14 +9,14 @@ function startquery() {
         const wikis = v[0]
         const artcles = v[1]
 
+        let entries = document.createElement("div")
+        entries.className = "entries"
         if (wikis.length == 0) {
             const err = document.createElement("div")
             err.className = "error"
             err.appendChild(document.createTextNode("Error: no elements for query \"" + query + "\""))
-            document.getElementById("wikipedia").appendChild(err)
+            entries.appendChild(err)
         } else {
-            let entries = document.createElement("div")
-            entries.className = "entries"
             wikis.forEach(wiki => {
                 const ent = document.createElement("div")
                 ent.className = "entry"
@@ -35,17 +35,18 @@ function startquery() {
 
                 entries.appendChild(ent)
             })
-            document.getElementById("wikipedia").appendChild(entries)
         }
+        document.getElementById("wikipedia").appendChild(entries)
 
+        entries = document.createElement("div")
+        entries.className = "entries"
         if (artcles.length == 0) {
             const err = document.createElement("div")
             err.className = "error"
             err.appendChild(document.createTextNode("Error: no elements for query \"" + query + "\""))
-            document.getElementById("npj").appendChild(err)
+
+            entries.appendChild(err)
         } else {
-            let entries = document.createElement("div")
-            entries.className = "entries"
             artcles.forEach(art => {
                 const ent = document.createElement("div")
                 ent.className = "entry"
@@ -68,8 +69,8 @@ function startquery() {
 
                 entries.appendChild(ent)
             })
-            document.getElementById("npj").appendChild(entries)
         }
+        document.getElementById("npj").appendChild(entries)
 
         // make sources visible
     })
