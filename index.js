@@ -34,6 +34,18 @@ function startquery() {
                 text.appendChild(document.createTextNode(wiki.blurb))
                 ent.appendChild(text)
 
+                const cite = document.createElement("button")
+                cite.appendChild(document.createTextNode("Cite this article"))
+                cite.onclick = () => {
+                    const temp = document.createElement("input")
+                    document.body.appendChild(temp)
+                    temp.value = apa(wiki)
+                    temp.select()
+                    document.execCommand("copy")
+                    document.body.removeChild(temp)
+                }
+                ent.appendChild(cite)
+
                 entries.appendChild(ent)
             })
         }
@@ -68,6 +80,18 @@ function startquery() {
                 text.appendChild(document.createTextNode(art.blurb))
                 ent.appendChild(text)
 
+                const cite = document.createElement("button")
+                cite.appendChild(document.createTextNode("Cite this article"))
+                cite.onclick = () => {
+                    const temp = document.createElement("input")
+                    document.body.appendChild(temp)
+                    temp.value = apa(art)
+                    temp.select()
+                    document.execCommand("copy")
+                    document.body.removeChild(temp)
+                }
+                ent.appendChild(cite)
+
                 entries.appendChild(ent)
             })
         }
@@ -101,6 +125,18 @@ function startquery() {
                 const text = document.createElement("p")
                 text.appendChild(document.createTextNode(art.blurb))
                 ent.appendChild(text)
+
+                const cite = document.createElement("button")
+                cite.appendChild(document.createTextNode("Cite this article"))
+                cite.onclick = () => {
+                    const temp = document.createElement("input")
+                    document.body.appendChild(temp)
+                    temp.value = apa(art)
+                    temp.select()
+                    document.execCommand("copy")
+                    document.body.removeChild(temp)
+                }
+                ent.appendChild(cite)
 
                 entries.appendChild(ent)
             })
@@ -139,6 +175,17 @@ function article(nm, src, blrb, rnk, rl, tme) {
         url: rl,
         time: tme,
     }
+}
+
+function apa(art) {
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+    const date = art.time.split("-")
+    const month = monthNames[parseInt(date[1])]
+    const day = parseInt(date[2]) + ""
+    const today = new Date()
+    return `<i>${art.name}</i>. (${date[0]}, ${month} ${day}). ` +
+           `Retrieved ${monthNames[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}, ` +
+           `from ${art.url}`
 }
 
 function strip(html){
