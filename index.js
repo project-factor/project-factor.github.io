@@ -73,6 +73,7 @@ function makeEntry(entry, showSrc) {
     const title = document.createElement("h3")
     const link = document.createElement("a")
     link.href = entry.url
+    link.target = "_blank"
     link.appendChild(document.createTextNode(entry.name))
     title.appendChild(link)
     entrydiv.appendChild(title)
