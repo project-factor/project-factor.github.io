@@ -206,6 +206,7 @@ input {
 }
 
 .showMore {
+    padding-bottom: 10px;
     font-size: 20px;
     color: white;
     text-align: center;
@@ -215,6 +216,8 @@ input {
 
 .showMore:hover {
     cursor: pointer;
+    color: gray;
+    transition: color .2s linear;
 }
 
 #bot {
