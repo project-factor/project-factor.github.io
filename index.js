@@ -1,6 +1,7 @@
 "use strict";
 
 function startquery() {
+    document.getElementById("sources").style.visibility = "visible";
     clearSources()
 
     const query = document.getElementById("query").value
