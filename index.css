@@ -124,6 +124,18 @@ input {
     border-radius: 0 5px 5px 5px;
 }
 
+.error {
+    margin: 15px;
+    background-color: #FFCA3A;
+    padding: 5px;
+    font-size: 20px;
+    
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .2);
+    border: 0;
+    
+    border-radius: 5px;
+}
+
 .entry {
     margin: 15px;
     background-color: white;
