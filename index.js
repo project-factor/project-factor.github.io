@@ -10,7 +10,7 @@ function startquery() {
 
         wikis.forEach(wiki => {
             const ent = document.createElement("div")
-            ent.class = "entry"
+            ent.className = "entry"
             ent.id = "wiki" + wiki.rank
 
             const title = document.createElement("h3")
@@ -31,7 +31,7 @@ function startquery() {
             console.log(art)
 
             const ent = document.createElement("div")
-            ent.class = "entry"
+            ent.className = "entry"
             ent.id = "story" + art.rank
 
             const title = document.createElement("h3")
