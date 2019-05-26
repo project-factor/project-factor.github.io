@@ -37,7 +37,7 @@ function startquery() {
             document.getElementById("wikipedia").appendChild(entries)
         }
 
-        if (articles.length == 0) {
+        if (artcles.length == 0) {
             const err = document.createElement("div")
             err.className = "error"
             err.appendChild(document.createTextNode("Error: no elements for query \"" + query + "\""))
