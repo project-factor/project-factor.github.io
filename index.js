@@ -7,144 +7,84 @@ function startquery() {
         clearSources()
 
         const wikis = v[0]
-        const artcles = v[1]
+        const articles = v[1]
         const papers = v[2]
 
-        let entries = document.createElement("div")
-        entries.className = "entries"
-        if (wikis.length == 0) {
-            const err = document.createElement("div")
-            err.className = "error"
-            err.appendChild(document.createTextNode("Error: no elements for query \"" + query + "\""))
-            entries.appendChild(err)
-        } else {
-            wikis.forEach(wiki => {
-                const ent = document.createElement("div")
-                ent.className = "entry"
-                ent.id = "wiki" + wiki.rank
+        document.getElementById("wikipedia").appendChild(makeEntries(wikis, false))
 
-                const title = document.createElement("h3")
-                const link = document.createElement("a")
-                link.href = wiki.url
-                link.appendChild(document.createTextNode(wiki.name))
-                title.appendChild(link)
-                ent.appendChild(title)
+        document.getElementById("npj").appendChild(makeEntries(articles, true))
 
-                const text = document.createElement("p")
-                text.appendChild(document.createTextNode(wiki.blurb))
-                ent.appendChild(text)
-
-                const cite = document.createElement("button")
-                cite.appendChild(document.createTextNode("Cite this article"))
-                cite.onclick = () => {
-                    const temp = document.createElement("input")
-                    document.body.appendChild(temp)
-                    temp.value = apa(wiki)
-                    temp.select()
-                    document.execCommand("copy")
-                    document.body.removeChild(temp)
-                }
-                ent.appendChild(cite)
-
-                entries.appendChild(ent)
-            })
-        }
-        document.getElementById("wikipedia").appendChild(entries)
-
-        entries = document.createElement("div")
-        entries.className = "entries"
-        if (artcles.length == 0) {
-            const err = document.createElement("div")
-            err.className = "error"
-            err.appendChild(document.createTextNode("Error: no elements for query \"" + query + "\""))
-
-            entries.appendChild(err)
-        } else {
-            artcles.forEach(art => {
-                const ent = document.createElement("div")
-                ent.className = "entry"
-                ent.id = "story" + art.rank
-
-                const title = document.createElement("h3")
-                const link = document.createElement("a")
-                link.href = art.url
-                link.appendChild(document.createTextNode(art.name))
-                title.appendChild(link)
-                ent.appendChild(title)
-
-                const src = document.createElement("h3")
-                src.appendChild(document.createTextNode(art.source))
-                ent.appendChild(src)
-
-                const text = document.createElement("p")
-                text.appendChild(document.createTextNode(art.blurb))
-                ent.appendChild(text)
-
-                const cite = document.createElement("button")
-                cite.appendChild(document.createTextNode("Cite this article"))
-                cite.onclick = () => {
-                    const temp = document.createElement("input")
-                    document.body.appendChild(temp)
-                    temp.value = apa(art)
-                    temp.select()
-                    document.execCommand("copy")
-                    document.body.removeChild(temp)
-                }
-                ent.appendChild(cite)
-
-                entries.appendChild(ent)
-            })
-        }
-        document.getElementById("npj").appendChild(entries)
-
-        entries = document.createElement("div")
-        entries.className = "entries"
-        if (papers.length == 0) {
-            const err = document.createElement("div")
-            err.className = "error"
-            err.appendChild(document.createTextNode("Error: no elements for query \"" + query + "\""))
-
-            entries.appendChild(err)
-        } else {
-            papers.forEach(art => {
-                const ent = document.createElement("div")
-                ent.className = "entry"
-                ent.id = "paper" + art.rank
-
-                const title = document.createElement("h3")
-                const link = document.createElement("a")
-                link.href = art.url
-                link.appendChild(document.createTextNode(art.name))
-                title.appendChild(link)
-                ent.appendChild(title)
-
-                const src = document.createElement("h3")
-                src.appendChild(document.createTextNode(art.source))
-                ent.appendChild(src)
-
-                const text = document.createElement("p")
-                text.appendChild(document.createTextNode(art.blurb))
-                ent.appendChild(text)
-
-                const cite = document.createElement("button")
-                cite.appendChild(document.createTextNode("Cite this article"))
-                cite.onclick = () => {
-                    const temp = document.createElement("input")
-                    document.body.appendChild(temp)
-                    temp.value = apa(art)
-                    temp.select()
-                    document.execCommand("copy")
-                    document.body.removeChild(temp)
-                }
-                ent.appendChild(cite)
-
-                entries.appendChild(ent)
-            })
-        }
-        document.getElementById("arxiv").appendChild(entries)
+        document.getElementById("arxiv").appendChild(makeEntries(papers, true))
 
         document.getElementById("sources").style.visibility = "visible"
     })
+}
+
+function makeEntries(entries, showSrc) {
+    const entriesdiv = document.createElement("div")
+    entriesdiv.className = "entries"
+
+    if (entries.length == 0) {
+        const err = document.createElement("div")
+        err.className = "error"
+        err.appendChild(document.createTextNode("Error: no elements found for query"))
+        entriesdiv.appendChild(err)
+    } else {
+        const top = entries.shift()
+        entriesdiv.appendChild(makeEntry(top, showSrc))
+
+        if (entries.length > 0) {
+            const showMore = document.createElement("div")
+            showMore.className = "showMore"
+            showMore.appendChild(document.createTextNode("Click here for more"))
+            entriesdiv.appendChild(showMore)
+
+            showMore.onclick = () => {
+                entriesdiv.removeChild(showMore)
+                entries.forEach(entry => {
+                    entriesdiv.appendChild(makeEntry(entry, showSrc))
+                })
+            }
+        }
+    }
+    return entriesdiv
+}
+
+function makeEntry(entry, showSrc) {
+    const entrydiv = document.createElement("div")
+    entrydiv.className = "entry"
+    entrydiv.id = "entry" + entry.rank
+
+    const title = document.createElement("h3")
+    const link = document.createElement("a")
+    link.href = entry.url
+    link.appendChild(document.createTextNode(entry.name))
+    title.appendChild(link)
+    entrydiv.appendChild(title)
+
+    if (showSrc) {
+        const src = document.createElement("h3")
+        src.appendChild(document.createTextNode(entry.source))
+        entrydiv.appendChild(src)
+    }
+
+    const text = document.createElement("p")
+    text.appendChild(document.createTextNode(entry.blurb))
+    entrydiv.appendChild(text)
+
+    const cite = document.createElement("button")
+    cite.appendChild(document.createTextNode("Cite this article"))
+    cite.onclick = () => {
+        const temp = document.createElement("input")
+        document.body.appendChild(temp)
+        temp.value = apa(entry)
+        temp.select()
+        document.execCommand("copy")
+        document.body.removeChild(temp)
+    }
+    entrydiv.appendChild(cite)
+
+    return entrydiv
 }
 
 function clearSources() {
