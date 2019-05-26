@@ -189,7 +189,6 @@ function arxiv(query) {
         })
 }
 
-
 function scrollAbout() {
     var element = document.getElementById("about");
     element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
