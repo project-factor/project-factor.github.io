@@ -5,9 +5,10 @@ function startquery() {
     clearSources()
 
     const query = document.getElementById("query").value
-    Promise.all([wikipedia(query), newsapi(query)]).then((v) => {
+    Promise.all([wikipedia(query), newsapi(query), arxiv(query)]).then((v) => {
         const wikis = v[0]
         const artcles = v[1]
+        const papers = v[2]
 
         let entries = document.createElement("div")
         entries.className = "entries"
@@ -90,14 +91,14 @@ function clearSources() {
     })
 }
 
-function article(nm, src, blrb, rnk, url) {
-    const art = {}
-    art.name = nm
-    art.source = src
-    art.blurb = blrb
-    art.rank = rnk
-    art.url = url
-    return art
+function article(nm, src, blrb, rnk, rl) {
+    return {
+        name: nm,
+        source: src,
+        blurb: blrb,
+        rank: rnk,
+        url: rl,
+    }
 }
 
 function strip(html){
@@ -129,4 +130,26 @@ function newsapi(query) {
             const pages = j.articles
             return pages.map((page, index) => article(page.title, page.source.name, page.description, index, page.url))
        })
+}
+
+function megatrim(str, joinstr) {
+    return str.trim().split("\n").map(l=>l.trim()).join(joinstr)
+}
+
+function arxiv(query) {
+    const baseurl = "https://export.arxiv.org/api/query?sortBy=relevance&search_query=all:\""
+    const apiurl = baseurl + query + "\"" 
+    return fetch(apiurl)
+        .then(response => response.text()) .then(xmltext => {
+            const xml = new DOMParser().parseFromString(xmltext, "text/xml")
+            return Array.from(xml.getElementsByTagName("entry")).map((entry, index) => {
+                const title = megatrim(entry.getElementsByTagName("title")[0].textContent, " ")
+                const authors = Array.from(entry.getElementsByTagName("author")).map(author => 
+                    author.textContent.trim()
+                ).join(", ")
+                const summary = megatrim(entry.getElementsByTagName("summary")[0].textContent, "")
+                const url = megatrim(entry.getElementsByTagName("id")[0].textContent)
+                return article(title, authors, summary, index, url)
+            })
+        })
 }
