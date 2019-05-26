@@ -2,10 +2,11 @@
 
 function startquery() {
     document.getElementById("sources").style.visibility = "visible";
-    clearSources()
 
     const query = document.getElementById("query").value
     Promise.all([wikipedia(query), newsapi(query), arxiv(query)]).then((v) => {
+        clearSources()
+
         const wikis = v[0]
         const artcles = v[1]
         const papers = v[2]
@@ -121,6 +122,11 @@ function clearSources() {
     const npj = document.getElementById("npj")
     Array.from(npj.children).forEach(child => {
         if (child.tagName == "DIV") npj.removeChild(child)  
+    })
+
+    const arxiv = document.getElementById("arxiv")
+    Array.from(arxiv.children).forEach(child => {
+        if (child.tagName == "DIV") arxiv.removeChild(child)
     })
 }
 
