@@ -195,6 +195,11 @@ input {
     border-radius: 5px;
 }
 
+.entry h3 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .showMore {
     font-size: 20px;
     color: white;
