@@ -8,53 +8,67 @@ function startquery() {
         const wikis = v[0]
         const artcles = v[1]
 
-        let entries = document.createElement("div")
-        entries.className = "entries"
-        wikis.forEach(wiki => {
-            const ent = document.createElement("div")
-            ent.className = "entry"
-            ent.id = "wiki" + wiki.rank
+        if (wikis.length == 0) {
+            const err = document.createElement("div")
+            err.className = "error"
+            err.appendChild(document.createTextNode("Error: no elements for query \"" + query + "\""))
+            document.getElementById("wikipedia").appendChild(err)
+        } else {
+            let entries = document.createElement("div")
+            entries.className = "entries"
+            wikis.forEach(wiki => {
+                const ent = document.createElement("div")
+                ent.className = "entry"
+                ent.id = "wiki" + wiki.rank
 
-            const title = document.createElement("h3")
-            const link = document.createElement("a")
-            link.href = wiki.url
-            link.appendChild(document.createTextNode(wiki.name))
-            title.appendChild(link)
-            ent.appendChild(title)
+                const title = document.createElement("h3")
+                const link = document.createElement("a")
+                link.href = wiki.url
+                link.appendChild(document.createTextNode(wiki.name))
+                title.appendChild(link)
+                ent.appendChild(title)
 
-            const text = document.createElement("p")
-            text.appendChild(document.createTextNode(wiki.blurb))
-            ent.appendChild(text)
+                const text = document.createElement("p")
+                text.appendChild(document.createTextNode(wiki.blurb))
+                ent.appendChild(text)
 
-            entries.appendChild(ent)
-        })
-        document.getElementById("wikipedia").appendChild(entries)
+                entries.appendChild(ent)
+            })
+            document.getElementById("wikipedia").appendChild(entries)
+        }
 
-        entries = document.createElement("div")
-        entries.className = "entries"
-        artcles.forEach(art => {
-            const ent = document.createElement("div")
-            ent.className = "entry"
-            ent.id = "story" + art.rank
+        if (articles.length == 0) {
+            const err = document.createElement("div")
+            err.className = "error"
+            err.appendChild(document.createTextNode("Error: no elements for query \"" + query + "\""))
+            document.getElementById("npj").appendChild(err)
+        } else {
+            let entries = document.createElement("div")
+            entries.className = "entries"
+            artcles.forEach(art => {
+                const ent = document.createElement("div")
+                ent.className = "entry"
+                ent.id = "story" + art.rank
 
-            const title = document.createElement("h3")
-            const link = document.createElement("a")
-            link.href = art.url
-            link.appendChild(document.createTextNode(art.name))
-            title.appendChild(link)
-            ent.appendChild(title)
+                const title = document.createElement("h3")
+                const link = document.createElement("a")
+                link.href = art.url
+                link.appendChild(document.createTextNode(art.name))
+                title.appendChild(link)
+                ent.appendChild(title)
 
-            const src = document.createElement("h3")
-            src.appendChild(document.createTextNode(art.source))
-            ent.appendChild(src)
+                const src = document.createElement("h3")
+                src.appendChild(document.createTextNode(art.source))
+                ent.appendChild(src)
 
-            const text = document.createElement("p")
-            text.appendChild(document.createTextNode(art.blurb))
-            ent.appendChild(text)
+                const text = document.createElement("p")
+                text.appendChild(document.createTextNode(art.blurb))
+                ent.appendChild(text)
 
-            entries.appendChild(ent)
-        })
-        document.getElementById("npj").appendChild(entries)
+                entries.appendChild(ent)
+            })
+            document.getElementById("npj").appendChild(entries)
+        }
 
         // make sources visible
     })
