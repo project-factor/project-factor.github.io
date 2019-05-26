@@ -101,7 +101,7 @@ input {
 #sources h2 {
     padding: 5px;
     margin: left;
-    width: 150px;
+    width: 180px;
     color: white;
     text-align: center;
     margin-bottom: 0;
@@ -146,7 +146,8 @@ input {
     width: 180px;
     display: block;
     margin: auto;
-     border: 0;
+    border: 0;
+    outline: 0;
     background-color: #DF2935; 
     color: white;
     border-radius: 10px;
@@ -170,8 +171,6 @@ input {
     transform: translateY(4px);
     transition: transform .3s linear;
 }
-
-
 
 .error {
     margin: 15px;
