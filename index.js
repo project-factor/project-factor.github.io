@@ -10,17 +10,17 @@ function startquery() {
         const articles = v[1]
         const papers = v[2]
 
-        document.getElementById("wikipedia").appendChild(makeEntries(wikis, false))
+        bindEntries(wikis, false, "wikipedia")
 
-        document.getElementById("npj").appendChild(makeEntries(articles, true))
+        bindEntries(articles, true, "npj")
 
-        document.getElementById("arxiv").appendChild(makeEntries(papers, true))
+        bindEntries(papers, true, "arxiv")
 
         document.getElementById("sources").style.visibility = "visible"
     })
 }
 
-function makeEntries(entries, showSrc) {
+function bindEntries(entries, showSrc, id) {
     const entriesdiv = document.createElement("div")
     entriesdiv.className = "entries"
 
@@ -54,13 +54,15 @@ function makeEntries(entries, showSrc) {
                     entriesdiv.removeChild(child)
                 })
                 entriesdiv.appendChild(showMore)
+                scrollId(id)
             }
 
             entriesdiv.appendChild(showMore)
 
         }
     }
-    return entriesdiv
+
+    document.getElementById(id).appendChild(entriesdiv)
 }
 
 function makeEntry(entry, showSrc) {
