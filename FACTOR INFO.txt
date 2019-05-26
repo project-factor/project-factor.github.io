@@ -10,7 +10,7 @@ PURPOSE
 To provide a quick engine to search on so you won't have to waste time looking for articles and citing them.
 
 TEAM BEHIND FACTOR
-The team behind Project: Factor consists of Raffi "Bigman" Sanna, Matt "The Dragon" Adragna, Travis "
+The team behind Project: Factor consists of Matthew Adragna, Travis Thompson, Ben Nordemann, and Raffi "Bigman" Sanna
 
 CONTACT US
 Don't contact us 
