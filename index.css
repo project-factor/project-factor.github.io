@@ -69,6 +69,7 @@ input {
     transform: translateY(2px);
     transition: box-shadow .2s linear;
     transition: transition .2s linear;
+    cursor: pointer;
 
 }
 
