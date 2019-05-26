@@ -71,3 +71,47 @@ input {
     transition: transition .2s linear;
     
 }
+
+#sources {
+    margin-top: 25px;
+    font-family: 'Slabo 27px', serif;
+}
+
+#content {
+    margin: auto;
+}
+
+#sources h2 {
+    padding: 5px;
+    margin: left;
+    width: 150px;
+    color: white;
+    text-align: center;
+    margin-left: 4.5%;
+    margin-bottom: 0;
+    background-color: #DF2935;
+    
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .6);
+    border: 0;
+}
+
+#sources a {
+    color: black;
+    text-decoration: underline;
+    
+}
+
+.entry {
+    margin: auto;
+    margin-top: 0;
+    background-color: white;
+    width: 90%;
+    padding: 5px;
+    
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .2);
+    border: 0;
+    
+}
