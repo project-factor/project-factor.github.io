@@ -107,7 +107,7 @@ function startquery() {
         }
         document.getElementById("arxiv").appendChild(entries)
 
-        document.getElementById("sources").style.visibility = "visible";
+        document.getElementById("sources").style.visibility = "visible"
     })
 }
 
