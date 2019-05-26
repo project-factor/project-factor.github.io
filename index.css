@@ -62,13 +62,15 @@ input {
     box-shadow: 0 6px #B7222C;
     font-size: 30px;
     font-family: 'Slabo 27px', serif;
+    transition: box-shadow .2s linear; 
+    transition: transform .3s linear;
 }
 
 #btnSubmit:hover {
     box-shadow: 0 4px #B7222C;
     transform: translateY(2px);
     transition: box-shadow .2s linear;
-    transition: transition .2s linear;
+    transition: transform .2s linear;
     cursor: pointer;
 
 }
@@ -115,22 +117,33 @@ input {
 #sources a {
     font-size: 25px;
     color: black;
-    text-decoration: underline;
+    transition: color .2s linear;
+    text-decoration: none;
     margin-bottom: 0;
 }
 
-.entries{
+#sources a:hover {
+    color: gray;
+    transition: color .2s linear;
+}
+
+#sources p {
+    font-size: 20px;
+}
+
+
+.entries {
     padding: 1px;
     margin-bottom: 40px;
     background-color: #DF2935;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .5);
     border-radius: 0 5px 5px 5px;
-    
 }
 
 .entries button {
+    font-size: 20px;
     font-family: 'Slabo 27px', serif;
-    width: 120px;
+    width: 180px;
     display: block;
     margin: auto;
      border: 0;
@@ -138,15 +151,26 @@ input {
     color: white;
     border-radius: 10px;
     margin-bottom: 5px;
+    box-shadow: 0 3px #B7222C;    
+    transition: box-shadow .2s linear; 
+    transition: transform .3s linear;
 }
 
 .entries button:hover {
     cursor: pointer;
+    box-shadow: 0 2px #B7222C;
+    transition: box-shadow .2s linear;
+    transform: translateY(2px);
+    transition: transform .3s linear;
 }
 
-.entries button:click {
-    
+.entries button:active {
+    box-shadow: 0 0px #B7222C;
+    transition: box-shadow .2s linear; 
+    transform: translateY(4px);
+    transition: transform .3s linear;
 }
+
 
 
 .error {
@@ -174,6 +198,7 @@ input {
 }
 
 .showMore {
+    font-size: 20px;
     color: white;
     text-align: center;
     margin-bottom: 5px;
@@ -187,7 +212,7 @@ input {
 #bot {
     height: 8%;
     width: 100%;
-    background-color: #3C3C3C;
+    background-color: #E5E7E6;
 }
 
 #bot #next {
@@ -199,6 +224,7 @@ input {
     border-color: rgba(0, 0, 0, 0);
     border-style: solid;
     border-radius: 20px;
+    transition: width .3s linear; 
 }
 
 #bot #next:hover {
@@ -227,12 +253,22 @@ input {
     color: #DADFF7;
     font-size: 50px;
     color: white;
-    margin-top: 40px;
+    margin-top: 20px;
     font-family: 'Slabo 27px', serif;
 }
 
+#about a {
+    color: black;
+    text-decoration: none;
+}
+
+#about a:hover {
+    color: gray;
+    transition: color .2s linear;
+}
+
 #about .entry {
-    margin: 20px 10%;;
+    margin: 10px 10%;;
     text-align: center
 }
 
