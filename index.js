@@ -130,13 +130,14 @@ function clearSources() {
     })
 }
 
-function article(nm, src, blrb, rnk, rl) {
+function article(nm, src, blrb, rnk, rl, tme) {
     return {
         name: nm,
         source: src,
         blurb: blrb,
         rank: rnk,
         url: rl,
+        time: tme,
     }
 }
 
@@ -153,7 +154,10 @@ function wikipedia(query) {
         .then(response => response.json())
         .then((j) => {
             const pages = j.query.search
-            return pages.map((page, index) => article(page.title, "Wikipedia", strip(page.snippet), index, lookupurl + page.title.replace(" ", "_")))
+            return pages.map((page, index) => article(page.title, "Wikipedia", 
+                                                      strip(page.snippet), index, 
+                                                      lookupurl + page.title.replace(" ", "_"),
+                                                      page.timestamp.slice(0,10)))
         })
 }
 
@@ -165,10 +169,11 @@ function newsapi(query) {
     const fullurl = apiurl + escape(query)
     return fetch(fullurl)
         .then(response => response.json())
-        .then((j) => {
-            const pages = j.articles
-            return pages.map((page, index) => article(page.title, page.source.name, page.description, index, page.url))
-       })
+        .then(j =>
+            j.articles.map((page, index) => article(page.title, page.source.name, 
+                                                    page.description, index, 
+                                                    page.url, page.publishedAt.slice(0,10)))
+        )
 }
 
 function megatrim(str, joinstr) {
@@ -188,7 +193,8 @@ function arxiv(query) {
                 ).join(", ")
                 const summary = megatrim(entry.getElementsByTagName("summary")[0].textContent, "")
                 const url = megatrim(entry.getElementsByTagName("id")[0].textContent)
-                return article(title, authors, summary, index, url)
+                const time = entry.getElementsByTagName("published")[0].textContent.slice(0,10)
+                return article(title, authors, summary, index, url, time)
             })
         })
 }
