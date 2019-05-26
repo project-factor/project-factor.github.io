@@ -28,8 +28,6 @@ function startquery() {
         })
 
         artcles.forEach(art => {
-            console.log(art)
-
             const ent = document.createElement("div")
             ent.className = "entry"
             ent.id = "story" + art.rank
@@ -93,7 +91,7 @@ function wikipedia(query) {
         .then(response => response.json())
         .then((j) => {
             const pages = j.query.search
-            return pages.map((page, index) => article(page.title, "Wikipedia", strip(page.snippet), index, lookupurl + escape(page.title)))
+            return pages.map((page, index) => article(page.title, "Wikipedia", strip(page.snippet), index, lookupurl + page.title.replace(" ", "_")))
         })
 }
 
