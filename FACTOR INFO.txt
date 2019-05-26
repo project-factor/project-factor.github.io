@@ -1,6 +1,9 @@
 
 WHAT IS FACTOR
 Factor is a website developed for the common researcher looking for unbiased material to base his/her research off of.
+
+commonly accepted facts
+
 We take in your query and compare it to open source databases that are available to us to provide you with relevant results.
 We only display articles from websites that are non-for-profit, and thus relatively unbiased.
 We implemet javascript APIs to catalog the search query and then feed it through our HTML structure and CSS script.
@@ -10,7 +13,7 @@ PURPOSE
 To provide a quick engine to search on so you won't have to waste time looking for articles and citing them.
 
 TEAM BEHIND FACTOR
-The team behind Project: Factor consists of Matthew Adragna, Travis Thompson, Ben Nordemann, and Raffi "Bigman" Sanna
+The team behind Factor consists of Matthew Adragna, Travis Thompson, Ben Nordemann, and Raffi "Bigman" Sanna
 
 CONTACT US
 Don't contact us 
