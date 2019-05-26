@@ -37,14 +37,27 @@ function makeEntries(entries, showSrc) {
             const showMore = document.createElement("div")
             showMore.className = "showMore"
             showMore.appendChild(document.createTextNode("Click here for more"))
-            entriesdiv.appendChild(showMore)
-
             showMore.onclick = () => {
                 entriesdiv.removeChild(showMore)
                 entries.forEach(entry => {
                     entriesdiv.appendChild(makeEntry(entry, showSrc))
                 })
+                entriesdiv.appendChild(showLess)
             }
+
+            const showLess = document.createElement("div")
+            showLess.className = "showMore"
+            showLess.appendChild(document.createTextNode("Click here for less"))
+            showLess.onclick = () => {
+                entriesdiv.removeChild(showLess)
+                Array.from(entriesdiv.children).slice(1).forEach(child => {
+                    entriesdiv.removeChild(child)
+                })
+                entriesdiv.appendChild(showMore)
+            }
+
+            entriesdiv.appendChild(showMore)
+
         }
     }
     return entriesdiv
