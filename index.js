@@ -1,7 +1,6 @@
 "use strict";
 
 function startquery() {
-    document.getElementById("sources").style.visibility = "visible";
 
     const query = document.getElementById("query").value
     Promise.all([wikipedia(query), newsapi(query), arxiv(query)]).then((v) => {
@@ -107,7 +106,8 @@ function startquery() {
             })
         }
         document.getElementById("arxiv").appendChild(entries)
-        // make sources visible
+
+        document.getElementById("sources").style.visibility = "visible"
     })
 }
 
@@ -154,10 +154,11 @@ function wikipedia(query) {
         .then(response => response.json())
         .then((j) => {
             const pages = j.query.search
-            return pages.map((page, index) => article(page.title, "Wikipedia", 
-                                                      strip(page.snippet), index, 
-                                                      lookupurl + page.title.replace(" ", "_"),
-                                                      page.timestamp.slice(0,10)))
+            return pages
+                .map((page, index) => article(page.title, "Wikipedia", 
+                                              strip(page.snippet), index, 
+                                              lookupurl + page.title.replace(" ", "_"),
+                                              page.timestamp.slice(0,10)))
         })
 }
 
@@ -170,9 +171,10 @@ function newsapi(query) {
     return fetch(fullurl)
         .then(response => response.json())
         .then(j =>
-            j.articles.map((page, index) => article(page.title, page.source.name, 
-                                                    page.description, index, 
-                                                    page.url, page.publishedAt.slice(0,10)))
+            j.articles
+                .map((page, index) => article(page.title, page.source.name, 
+                                              page.description, index, 
+                                              page.url, page.publishedAt.slice(0,10)))
         )
 }
 
@@ -186,16 +188,17 @@ function arxiv(query) {
     return fetch(apiurl)
         .then(response => response.text()) .then(xmltext => {
             const xml = new DOMParser().parseFromString(xmltext, "text/xml")
-            return Array.from(xml.getElementsByTagName("entry")).map((entry, index) => {
-                const title = megatrim(entry.getElementsByTagName("title")[0].textContent, " ")
-                const authors = Array.from(entry.getElementsByTagName("author")).map(author => 
-                    author.textContent.trim()
-                ).join(", ")
-                const summary = megatrim(entry.getElementsByTagName("summary")[0].textContent, "")
-                const url = megatrim(entry.getElementsByTagName("id")[0].textContent)
-                const time = entry.getElementsByTagName("published")[0].textContent.slice(0,10)
-                return article(title, authors, summary, index, url, time)
-            })
+            return Array.from(xml.getElementsByTagName("entry"))
+                .map((entry, index) => {
+                    const title = megatrim(entry.getElementsByTagName("title")[0].textContent, " ")
+                    const authors = Array.from(entry.getElementsByTagName("author")).map(author => 
+                        author.textContent.trim()
+                    ).join(", ")
+                    const summary = megatrim(entry.getElementsByTagName("summary")[0].textContent, "")
+                    const url = megatrim(entry.getElementsByTagName("id")[0].textContent)
+                    const time = entry.getElementsByTagName("published")[0].textContent.slice(0,10)
+                    return article(title, authors, summary, index, url, time)
+                })
         })
 }
 
