@@ -7,7 +7,7 @@ html, body {
 #main {
     min-height: 92%;
     width: 100%;
-    background-color: #3C3C3C;
+    background-color: #E5E7E6;
     display: inline-block;
 }
 
@@ -123,7 +123,7 @@ input {
     padding: 1px;
     margin-bottom: 40px;
     background-color: #DF2935;
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .2);
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .5);
     border-radius: 0 5px 5px 5px;
     
 }
