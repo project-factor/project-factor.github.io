@@ -127,6 +127,22 @@ input {
     
 }
 
+.entries button {
+    font-family: 'Slabo 27px', serif;
+
+    display: block;
+    margin: auto;
+     border: 0;
+    background-color: #DF2935; 
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.entries button:hover {
+    cursor: pointer;
+}
+
 .error {
     margin: 15px;
     background-color: #FFCA3A;
@@ -151,8 +167,18 @@ input {
     border-radius: 5px;
 }
 
+.showMore {
+    color: white;
+    text-align: center;
+    margin-bottom: 5px;
+    font-style: italic;
+}
+
+.showMore:hover {
+    cursor: pointer;
+}
+
 #bot {
-    
     height: 8%;
     width: 100%;
     background-color: #3C3C3C;
@@ -167,8 +193,6 @@ input {
     border-color: rgba(0, 0, 0, 0);
     border-style: solid;
     border-radius: 20px;
-    
-    
 }
 
 #bot #next:hover {
@@ -177,6 +201,9 @@ input {
     transition: width .3s linear;  
 }
 
+#test {
+    visibility: visible;
+}
 
 #about {
     display: inline-block;
