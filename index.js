@@ -1,7 +1,6 @@
 "use strict";
-var ecount = 0;
+
 function startquery() {
-    ecount = 0;
     const query = document.getElementById("query").value
     Promise.all([wikipedia(query), newsapi(query), arxiv(query)]).then((v) => {
         clearSources()
@@ -89,9 +88,7 @@ function makeEntry(entry, showSrc) {
     entrydiv.appendChild(text)
 
     const cite = document.createElement("button")
-    cite.id = ecount
-    ecount++;
-    cite.appendChild(document.createTextNode("Cite this article"))
+    cite.textContent = "Cite this article"
     cite.onclick = () => {
         const temp = document.createElement("input")
         document.body.appendChild(temp)
@@ -99,7 +96,10 @@ function makeEntry(entry, showSrc) {
         temp.select()
         document.execCommand("copy")
         document.body.removeChild(temp)
-        citationCopy(cite.id)
+        cite.textContent = "Copied!"
+        setTimeout(() => { 
+            cite.textContent = "Cite this article" 
+        }, 1000)
     }
     entrydiv.appendChild(cite)
 
@@ -211,11 +211,4 @@ function arxiv(query) {
 function scrollId(id) {
     var element = document.getElementById(id);
     element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
-}
-
-function citationCopy(clicked_id) {
-       document.getElementById(clicked_id).innerHTML = "Copied!";
-    setTimeout(function() {
-       document.getElementById(clicked_id).innerHTML = "Cite this  article";
-    }, 1000);
 }
