@@ -129,7 +129,7 @@ input {
 
 .entries button {
     font-family: 'Slabo 27px', serif;
-
+    width: 120px;
     display: block;
     margin: auto;
      border: 0;
@@ -142,6 +142,11 @@ input {
 .entries button:hover {
     cursor: pointer;
 }
+
+.entries button:click {
+    
+}
+
 
 .error {
     margin: 15px;

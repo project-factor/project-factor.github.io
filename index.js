@@ -1,7 +1,7 @@
 "use strict";
-
+var ecount = 0;
 function startquery() {
-
+    ecount = 0;
     const query = document.getElementById("query").value
     Promise.all([wikipedia(query), newsapi(query), arxiv(query)]).then((v) => {
         clearSources()
@@ -27,7 +27,7 @@ function makeEntries(entries, showSrc) {
     if (entries.length == 0) {
         const err = document.createElement("div")
         err.className = "error"
-        err.appendChild(document.createTextNode("Error: no elements found for query"))
+        err.appendChild(document.createTextNode("No results found!"))
         entriesdiv.appendChild(err)
     } else {
         const top = entries.shift()
@@ -43,7 +43,8 @@ function makeEntries(entries, showSrc) {
                 entriesdiv.removeChild(showMore)
                 entries.forEach(entry => {
                     entriesdiv.appendChild(makeEntry(entry, showSrc))
-                })
+                })  
+                
             }
         }
     }
@@ -73,6 +74,8 @@ function makeEntry(entry, showSrc) {
     entrydiv.appendChild(text)
 
     const cite = document.createElement("button")
+    cite.id = ecount
+    ecount++;
     cite.appendChild(document.createTextNode("Cite this article"))
     cite.onclick = () => {
         const temp = document.createElement("input")
@@ -81,6 +84,7 @@ function makeEntry(entry, showSrc) {
         temp.select()
         document.execCommand("copy")
         document.body.removeChild(temp)
+        citationCopy(cite.id)
     }
     entrydiv.appendChild(cite)
 
@@ -192,4 +196,11 @@ function arxiv(query) {
 function scrollAbout() {
     var element = document.getElementById("about");
     element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+}
+
+function citationCopy(clicked_id) {
+       document.getElementById(clicked_id).innerHTML = "Copied!";
+    setTimeout(function() {
+       document.getElementById(clicked_id).innerHTML = "Cite this  article";
+    }, 1000);
 }
