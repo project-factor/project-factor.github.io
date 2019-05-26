@@ -11,34 +11,63 @@
 
         <script src="index.js"></script>
         <link rel="stylesheet" href="index.css">
+        
     </head>
 
     <body>
-        <header>
-           <img src="PROJECT%20FACTOR2.png">
-        </header>
+        <div id="main">
+            <header>
+                <img src="PROJECT%20FACTOR2.png">
+            </header>
+            <div id="search">
+                <input id="query" type="text" placeholder="What do you want to research?">
+                <input type="submit" id="btnSubmit" value="Search" onclick="startquery()">
+            </div>
 
-        <div id="search">
-            <input id="query" type="text" placeholder="What do you want to research?"></input>
-            <input type="submit" id="btnSubmit" value="Search" onclick="startquery()">
-        </div>
-
-        <div id="sources">
-            <h1>Sources</h1>
-            <div id="content">
-                <div id="wikipedia">
-                    <h2>Wikipedia</h2>
-                </div>
+            <div id="sources">
+                <div id="content">
+                    <div id="wikipedia">
+                        <h2>Wikipedia</h2>
+                    </div>
                 
-                <div id="npj">
-                   <h2>NPJ</h2>
+                    <div id="npj">
+                        <h2>NPJ</h2>
+                    </div>
                 </div>
 
                 <div id="arxiv">
                     <h2>arxiv</h2>
                 </div>
             </div>
+            <div id="bot">
+                <a href="#about"><img id="next" src="arrow_down.png"></a>
+            </div>
+        </div>    
+        <div id="about">
+            <h1>What is Factor?</h1>
+            <div class="entry">
+            <p>Factor is a website developed for the common researcher looking for unbiased material to base his/her research off of.
+We take in your query and compare it to open source databases that are available to us to provide you with relevant results.
+We only display articles from websites that are non-for-profit, and thus relatively unbiased.
+We implemet javascript APIs to catalog the search query and then feed it through our HTML structure and CSS script.
+On the side of every link we provide is also a button to cite the article in MLA format and copy it into your clipboard.</p>
                 
+            </div>
+            
+            <h1>Purpose</h1>
+            <div class="entry">
+                <p>To provide a quick engine to search on so you won't have to waste time looking for articles and citing them.</p>
+            </div>
+            
+            <h1>Team Behind Factor</h1>
+            <div class="entry">
+                <p>The team behind Project: Factor consists of Matthew Adragna, Travis Thompson, Ben Nordemann, and Raffi "Bigman" Sanna.</p>
+            </div>
+            
+            <h1>Contact Us</h1>
+            <div class="entry">
+                <p>Don't contact us.</p>
+            </div>
         </div>
     </body>
 </html>
