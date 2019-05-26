@@ -8,6 +8,8 @@ function startquery() {
         const wikis = v[0]
         const artcles = v[1]
 
+        let entries = document.createElement("div")
+        entries.className = "entries"
         wikis.forEach(wiki => {
             const ent = document.createElement("div")
             ent.className = "entry"
@@ -24,9 +26,12 @@ function startquery() {
             text.appendChild(document.createTextNode(wiki.blurb))
             ent.appendChild(text)
 
-            document.getElementById("wikipedia").appendChild(ent)
+            entries.appendChild(ent)
         })
+        document.getElementById("wikipedia").appendChild(entries)
 
+        entries = document.createElement("div")
+        entries.className = "entries"
         artcles.forEach(art => {
             const ent = document.createElement("div")
             ent.className = "entry"
@@ -47,8 +52,9 @@ function startquery() {
             text.appendChild(document.createTextNode(art.blurb))
             ent.appendChild(text)
 
-            document.getElementById("npj").appendChild(ent)
+            entries.appendChild(ent)
         })
+        document.getElementById("npj").appendChild(entries)
 
         // make sources visible
     })
