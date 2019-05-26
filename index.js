@@ -202,7 +202,7 @@ function arxiv(query) {
         })
 }
 
-function scrollAbout() {
-    var element = document.getElementById("about");
+function scrollId(id) {
+    var element = document.getElementById(id);
     element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
 }
